@@ -131,5 +131,11 @@
                     app:period="1200" />
             </FrameLayout>
         </LinearLayout>
+
+        <FrameLayout
+            android:id="@+id/sttframe"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        </FrameLayout>
     </RelativeLayout>
 </android.support.design.widget.CoordinatorLayout>

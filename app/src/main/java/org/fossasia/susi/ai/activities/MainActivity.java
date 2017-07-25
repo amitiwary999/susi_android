@@ -33,6 +33,7 @@ import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.util.Pair;
 import android.support.v4.view.MenuItemCompat;
@@ -236,8 +237,12 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         check = true;
-                        displayVoiceInput();
-                        promptSpeechInput();
+                        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+                        ft.replace(R.id.sttframe, new SttFragment());
+                        ft.addToBackStack(null);
+                        ft.commit();
+                       // displayVoiceInput();
+                        //promptSpeechInput();
                     }
                 });
             }
@@ -698,8 +703,13 @@ public class MainActivity extends AppCompatActivity {
                     MsgEnum message = MsgEnum.getMsgEnum(msg.what);
                     switch(message) {
                         case MSG_ACTIVE:
-                            displayVoiceInput();
-                            promptSpeechInput();
+
+                            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+                            ft.replace(R.id.sttframe, new SttFragment());
+                            ft.addToBackStack(null);
+                            ft.commit();
+                           // displayVoiceInput();
+                            //promptSpeechInput();
                             //showToast(getString(R.string.hotword_success));
                             break;
                         case MSG_INFO:
@@ -1158,8 +1168,10 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     check = true;
-                    displayVoiceInput();
-                    promptSpeechInput();
+                    FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+                    ft.replace(R.id.sttframe, new SttFragment());
+                    ft.addToBackStack(null);
+                    ft.commit();
                 }
             });
         } else {
@@ -1811,6 +1823,10 @@ public class MainActivity extends AppCompatActivity {
      */
     public void scrollToEnd(View view) {
         rvChatFeed.smoothScrollToPosition(rvChatFeed.getAdapter().getItemCount() - 1);
+    }
+
+    public void setText(String msg) {
+        sendMessage(msg, msg);
     }
 
     /**

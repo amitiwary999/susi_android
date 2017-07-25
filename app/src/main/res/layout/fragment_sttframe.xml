@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:background="@color/md_white_1000"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <TextView
+        android:id="@+id/listening"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/margin_large"
+        android:layout_marginTop="15sp"
+        android:layout_width="wrap_content"
+        android:text="Listening"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="25sp" />
+
+    <pl.tajchert.sample.DotsTextView
+        android:id="@+id/dots3"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/margin_large"
+        android:layout_toRightOf="@id/listening"
+        android:layout_width="wrap_content"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="35sp"
+        android:textStyle="normal|bold"
+        app:autoplay="false"
+        app:period="1200" />
+
+    <RelativeLayout
+        android:id="@+id/bottomlayout"
+        android:layout_alignParentBottom="true"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/activity_vertical_margin"
+        android:layout_width="match_parent">
+
+        <pl.tajchert.sample.DotsTextView
+            android:id="@+id/dots1"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginRight="@dimen/margin_large"
+            android:layout_toLeftOf="@id/btnSpeak"
+            android:layout_width="wrap_content"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="35sp"
+            android:textStyle="normal|bold"
+            app:autoplay="false"
+            app:period="1200" />
+
+        <ImageView
+            android:background="@drawable/round_background"
+            android:id="@+id/btnSpeak"
+            android:layout_centerInParent="true"
+            android:layout_height="40dp"
+            android:layout_width="40dp"
+            app:srcCompat="@drawable/ic_mic_24dp" />
+
+        <pl.tajchert.sample.DotsTextView
+            android:id="@+id/dots2"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="@dimen/margin_large"
+            android:layout_toRightOf="@id/btnSpeak"
+            android:layout_width="wrap_content"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="35sp"
+            android:textStyle="normal|bold"
+            app:autoplay="false"
+            app:period="1200" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/text"
+        android:layout_above="@id/bottomlayout"
+        android:layout_centerInParent="true"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/margin_large"
+        android:layout_width="wrap_content"
+        android:textColor="@color/colorPrimaryDark" />
+</RelativeLayout>
