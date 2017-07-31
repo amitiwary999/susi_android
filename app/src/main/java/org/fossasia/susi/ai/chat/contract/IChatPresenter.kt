@@ -52,6 +52,7 @@ interface IChatPresenter {
     //Login, Logout and detach
     fun logout()
     fun login()
+    fun setLogoutDialog()
     fun exitChatActivity()
     fun onDetach()
 }
