@@ -80,7 +80,7 @@ class ChatActivity: AppCompatActivity(), IChatView {
         chatPresenter.onAttach(this)
         setUpUI()
         initializationMethod(firstRun)
-        cancelSpeechInput()
+        //cancelSpeechInput()
 
         networkStateReceiver = object : BroadcastReceiver() {
             override fun onReceive(context: Context, intent: Intent) {
@@ -109,7 +109,7 @@ class ChatActivity: AppCompatActivity(), IChatView {
         chatPresenter.getUndeliveredMessages()
         chatPresenter.initiateHotwordDetection()
         compensateTTSDelay()
-        hideVoiceInput()
+       // hideVoiceInput()
     }
 
     fun setEditText() {
@@ -213,7 +213,11 @@ class ChatActivity: AppCompatActivity(), IChatView {
 
     //Take user's speech as input and send the message
     override fun promptSpeechInput() {
-        if(recordingThread != null)
+        val ft = supportFragmentManager.beginTransaction()
+        ft.replace(R.id.sttframe, STTfragment())
+        ft.addToBackStack(null)
+        ft.commit()
+      /*  if(recordingThread != null)
             chatPresenter.stopHotwordDetection()
         val intent = Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH)
         intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,
@@ -288,7 +292,7 @@ class ChatActivity: AppCompatActivity(), IChatView {
             }
         }
         recognizer.setRecognitionListener(listener)
-        recognizer.startListening(intent)
+        recognizer.startListening(intent)*/
     }
 
     //Replies user with Speech
@@ -375,7 +379,7 @@ class ChatActivity: AppCompatActivity(), IChatView {
         recordingThread?.stopRecording()
     }
 
-    override fun hideVoiceInput() {
+  /*  override fun hideVoiceInput() {
         speechlinearlayout.visibility = View.GONE
         et_message.visibility = View.VISIBLE
         btnSpeak.visibility = View.VISIBLE
@@ -386,9 +390,9 @@ class ChatActivity: AppCompatActivity(), IChatView {
         speechlinearlayout.visibility = View.VISIBLE
         et_message.visibility = View.GONE
         btnSpeak.visibility = View.GONE
-    }
+    }*/
 
-    fun cancelSpeechInput() {
+  /*  fun cancelSpeechInput() {
         cancel.setOnClickListener {
             recognizer.cancel()
             recognizer.destroy()
@@ -396,11 +400,11 @@ class ChatActivity: AppCompatActivity(), IChatView {
             if (recordingThread != null)
                 chatPresenter.startHotwordDetection()
         }
-    }
+    }*/
 
-    override fun displayPartialSTT(text: String) {
+  /*  override fun displayPartialSTT(text: String) {
       //  voice_input_text.text = text
-    }
+    }*/
 
     override fun checkMicPref(micCheck: Boolean) {
         if (micCheck) {
@@ -529,11 +533,15 @@ class ChatActivity: AppCompatActivity(), IChatView {
         recognizer.cancel()
         recognizer.destroy()
 
-        hideVoiceInput()
+        //hideVoiceInput()
 
-        if (recordingThread != null)
-            chatPresenter.stopHotwordDetection()
+      /*  if (recordingThread != null)
+            chatPresenter.stopHotwordDetection()*/
 
+    }
+
+    fun setText(msg: String) {
+        chatPresenter.sendMessage(msg, msg)
     }
 
     override fun onDestroy() {
